@@ -23,6 +23,6 @@ class ShoppingCart(private val cache: ShoppingCartCache) {
     }
 
     fun getTotalCost(): Double {
-        return cache.loadCart().sumOf { it.price }
+        return items.sumOf { it.price }
     }
 }
