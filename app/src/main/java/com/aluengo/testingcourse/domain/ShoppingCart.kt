@@ -1,18 +1,20 @@
 package com.aluengo.testingcourse.domain
 
-class ShoppingCart {
+class ShoppingCart(private val cache: ShoppingCartCache) {
 
     private val validProductIds = listOf(1, 2, 3, 4, 5)
-    private val items = mutableListOf<Product>()
+    private val items = cache.loadCart().toMutableList()
 
     fun addProduct(product: Product, quantity: Int) {
-        if(quantity < 0) {
+        if (quantity < 0) {
             throw IllegalArgumentException("Quantity can't be negative")
         }
-        if(isValidProduct(product)) {
+        if (isValidProduct(product)) {
             repeat(quantity) {
                 items.add(product)
             }
+
+            cache.saveCart(items)
         }
     }
 
@@ -21,6 +23,6 @@ class ShoppingCart {
     }
 
     fun getTotalCost(): Double {
-        return items.sumOf { it.price }
+        return cache.loadCart().sumOf { it.price }
     }
 }

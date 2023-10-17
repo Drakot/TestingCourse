@@ -3,6 +3,7 @@ package com.aluengo.testingcourse.domain
 import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import com.aluengo.testingcourse.data.ShoppingCartCacheFake
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -16,7 +17,7 @@ class ShoppingCartTest {
 
     @BeforeEach
     fun setUp() {
-        cart = ShoppingCart()
+        cart = ShoppingCart(ShoppingCartCacheFake())
     }
 
     @ParameterizedTest
