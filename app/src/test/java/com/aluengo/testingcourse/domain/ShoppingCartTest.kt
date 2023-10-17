@@ -32,7 +32,7 @@ class ShoppingCartTest {
     ) {
         // GIVEN
         val product = Product(
-            id = 0,
+            id = 1,
             name = "Ice cream",
             price = 5.0
         )
@@ -48,7 +48,7 @@ class ShoppingCartTest {
     @Test
     fun `Add product with negative quantity, throws Exception`() {
         val product = Product(
-            id = 0,
+            id = 1,
             name = "Ice cream",
             price = 5.0
         )
@@ -56,5 +56,19 @@ class ShoppingCartTest {
         assertFailure {
             cart.addProduct(product, -5)
         }
+    }
+
+    @Test
+    fun `isValidProduct returns invalid for not existing product`() {
+        val product = Product(
+            id = 1345,
+            name = "Ice cream",
+            price = 5.0
+        )
+        cart.addProduct(product, 4)
+
+        val totalPriceSum = cart.getTotalCost()
+
+        assertThat(totalPriceSum).isEqualTo(0.0)
     }
 }
