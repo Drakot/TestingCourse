@@ -67,6 +67,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testImplementation ("org.junit.jupiter:junit-jupiter-params:5.9.3")
+    testImplementation ("com.willowtreeapps.assertk:assertk:0.26.1")
+
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
