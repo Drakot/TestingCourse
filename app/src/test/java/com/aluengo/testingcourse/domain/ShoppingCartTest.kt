@@ -4,6 +4,7 @@ import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.aluengo.testingcourse.data.ShoppingCartCacheFake
+import com.aluengo.testingcourse.data.product
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -32,11 +33,7 @@ class ShoppingCartTest {
         expectedPriceSum: Double
     ) {
         // GIVEN
-        val product = Product(
-            id = 1,
-            name = "Ice cream",
-            price = 5.0
-        )
+        val product = product().copy(name = "Ice cream")
         cart.addProduct(product, quantity)
 
         // ACTION
@@ -48,11 +45,7 @@ class ShoppingCartTest {
 
     @Test
     fun `Add product with negative quantity, throws Exception`() {
-        val product = Product(
-            id = 1,
-            name = "Ice cream",
-            price = 5.0
-        )
+        val product = product()
 
         assertFailure {
             cart.addProduct(product, -5)
@@ -61,11 +54,7 @@ class ShoppingCartTest {
 
     @Test
     fun `isValidProduct returns invalid for not existing product`() {
-        val product = Product(
-            id = 1345,
-            name = "Ice cream",
-            price = 5.0
-        )
+        val product = product().copy(1)
         cart.addProduct(product, 4)
 
         val totalPriceSum = cart.getTotalCost()
