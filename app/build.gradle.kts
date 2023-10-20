@@ -76,6 +76,7 @@ dependencies {
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.9.3")
     testImplementation ("org.junit.jupiter:junit-jupiter-params:5.9.3")
     testImplementation ("com.willowtreeapps.assertk:assertk:0.26.1")
+    testImplementation ("io.mockk:mockk:1.13.5")
 
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
