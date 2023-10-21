@@ -13,12 +13,12 @@ class ProductRepositoryImpl(
     private val analyticsLogger: AnalyticsLogger
 ): ProductRepository {
 
-    override suspend fun purchaseProducts(products: List<Product>): Result<Unit> {
+    override suspend fun purchaseProducts(products: List<Product>): Result<List<Product>?> {
         return try {
-            productApi.purchaseProducts(
+            val response = productApi.purchaseProducts(
                 products = ProductsDto(products)
             )
-            Result.success(Unit)
+            Result.success(response)
         } catch (e: HttpException) {
             analyticsLogger.logEvent(
                 "http_error",
